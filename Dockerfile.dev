@@ -1,0 +1,75 @@
+# CodeReviewer Pro - Development Dockerfile
+# Optimized for local development with RTX 4070 (8GB VRAM)
+
+FROM nvidia/cuda:11.8-devel-ubuntu22.04
+
+# Environment variables for development
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DEBIAN_FRONTEND=noninteractive \
+    CUDA_VISIBLE_DEVICES=0 \
+    TORCH_CUDA_ARCH_LIST="8.6" \
+    FORCE_CUDA="1" \
+    PYTHONPATH="/app"
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3.11-dev \
+    python3.11-venv \
+    python3-pip \
+    git \
+    curl \
+    wget \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    libpq-dev \
+    htop \
+    vim \
+    tmux \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create symbolic links
+RUN ln -s /usr/bin/python3.11 /usr/bin/python && \
+    ln -s /usr/bin/python3.11 /usr/bin/python3
+
+# Upgrade pip
+RUN python -m pip install --upgrade pip setuptools wheel
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements and install with development extras
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt \
+    --extra-index-url https://download.pytorch.org/whl/cu118
+
+# Install additional development tools
+RUN pip install --no-cache-dir \
+    jupyter \
+    jupyterlab \
+    ipykernel \
+    notebook \
+    tensorboard \
+    wandb \
+    debugpy
+
+# Create directories
+RUN mkdir -p /app/ml/models/base /app/ml/models/fine_tuned /app/ml/data /app/logs
+
+# Copy application code (use .dockerignore to exclude unnecessary files)
+COPY . .
+
+# Install pre-commit hooks
+RUN pre-commit install || true
+
+# Expose ports for FastAPI, Jupyter, and TensorBoard
+EXPOSE 8000 8888 6006 5678
+
+# Development startup script
+COPY scripts/dev-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/dev-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/dev-entrypoint.sh"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

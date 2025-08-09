@@ -1,0 +1,330 @@
+# CodeReviewer Pro - Git Ignore Rules
+# Optimized for Python ML projects with CUDA/PyTorch
+
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+.coverage.*
+
+# =============================================================================
+# Environment & Configuration
+# =============================================================================
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# =============================================================================
+# Machine Learning & AI Models
+# =============================================================================
+# Model files (large binary files)
+*.bin
+*.pth
+*.pt
+*.safetensors
+*.ckpt
+*.h5
+*.pkl
+*.pickle
+*.joblib
+
+# HuggingFace cache and models
+ml/models/
+.cache/
+transformers_cache/
+huggingface_hub/
+
+# Training data and datasets
+ml/data/raw/
+ml/data/processed/
+ml/data/synthetic/
+*.csv
+*.json
+*.jsonl
+*.parquet
+*.feather
+*.arrow
+
+# Training logs and outputs
+logs/
+runs/
+wandb/
+tensorboard_logs/
+mlruns/
+outputs/
+checkpoints/
+
+# Model artifacts and experiments
+experiments/
+artifacts/
+.mlflow/
+
+# =============================================================================
+# CUDA & GPU
+# =============================================================================
+# NVIDIA profiler
+*.nvvp
+*.prof
+*.qdrep
+nsys_report.*
+ncu_report.*
+
+# =============================================================================
+# Jupyter Notebooks
+# =============================================================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*.ipynb
+
+# IPython
+profile_default/
+ipython_config.py
+
+# =============================================================================
+# Database
+# =============================================================================
+*.db
+*.sqlite3
+*.sqlite
+postgres_data/
+redis_data/
+
+# =============================================================================
+# Development Tools
+# =============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =============================================================================
+# Operating System
+# =============================================================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Linux
+*~
+.nfs*
+
+# =============================================================================
+# Docker & Containers
+# =============================================================================
+.dockerignore
+
+# =============================================================================
+# Monitoring & Logging
+# =============================================================================
+*.log
+logs/
+prometheus_data/
+grafana_data/
+
+# =============================================================================
+# File Uploads & Storage
+# =============================================================================
+uploads/
+temp/
+tmp/
+storage/
+static/uploads/
+media/
+
+# =============================================================================
+# API Keys & Secrets
+# =============================================================================
+.secrets
+secrets.json
+*.pem
+*.key
+*.crt
+*.p12
+
+# =============================================================================
+# Backup & Archives
+# =============================================================================
+*.bak
+*.backup
+*.tar.gz
+*.zip
+*.rar
+*.7z
+backups/
+
+# =============================================================================
+# Performance & Profiling
+# =============================================================================
+profile_output/
+*.prof
+*.pstats
+memory_profiler/
+line_profiler/
+
+# =============================================================================
+# Testing
+# =============================================================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+test_reports/
+
+# =============================================================================
+# Build & Distribution
+# =============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Frontend build
+frontend/dist/
+frontend/build/
+*.tsbuildinfo
+
+# =============================================================================
+# Package Managers
+# =============================================================================
+pip-log.txt
+pip-delete-this-directory.txt
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# =============================================================================
+# Documentation
+# =============================================================================
+site/
+docs/_build/
+
+# =============================================================================
+# Project Specific
+# =============================================================================
+# Model weights and checkpoints specific to RTX 4070 optimization
+gpu_optimized_models/
+cuda_cache/
+
+# Custom model fine-tuning outputs
+fine_tuned_models/
+lora_adapters/
+
+# Performance benchmarks and profiling
+benchmarks/
+performance_logs/
+
+# User uploaded code for analysis
+user_code/
+analysis_results/
+
+# Temporary processing files
+processing/
+queue/
+
+# Configuration files with sensitive data
+config/production/
+config/staging/
+
+# =============================================================================
+# WSL2 & Windows specific
+# =============================================================================
+# Windows Subsystem for Linux temp files
+/mnt/c/Windows/Temp/*
+/tmp/.X11-unix/
+
+# Windows file attributes
+*.lnk
+desktop.ini
+
+# =============================================================================
+# Keep important empty directories
+# =============================================================================
+!.gitkeep
+!*/.gitkeep
